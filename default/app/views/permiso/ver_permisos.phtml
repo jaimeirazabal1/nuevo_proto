@@ -1,0 +1,106 @@
+<br>
+<?php View::content() ?>
+<fieldset id="fielset_permisos">
+<div id="mensaje_login"></div>
+	<legend>
+		Permisos
+	</legend>
+	<table class="table">
+	<?php echo Form::open() ?>
+		<thead class='bg-primary'>
+			<th>Controlador/action</th>
+			<th>Titulo</th>
+			<th>Ocultar</th>
+			<th>
+				<label>
+					<?php echo "<input type=\"checkbox\" name=\"permiso_todos[todos]\" value=\"1\">" ?>Permitir Todo
+				</label>
+			</th>
+		</thead>
+		<?php foreach ($controladores as $key => $value): ?>
+			<tr>
+				<td>
+					<?php echo $value->controlador ?>
+				</td>
+				<?php $obj = $permiso->tienePermiso($value->id,$user_id) ?>
+				<td>
+					<?php if ($obj): ?>
+						<?php echo Form::text("permiso[{$value->id}][titulo]","placeholder='Titulo...' class='form-control input-sm' style='width:100%'",$obj->titulo) ?>
+					<?php else: ?>
+						<?php echo Form::text("permiso[{$value->id}][titulo]","placeholder='Titulo...' class='form-control input-sm' style='width:100%'") ?>
+					<?php endif ?>
+				</td>
+				<td>
+					<?php if ($obj): ?>
+						<?php if ($obj->hidden): ?>
+							<label>
+								<?php echo "<input type=\"checkbox\" name=\"permiso[{$value->id}][hidden]\" checked value=\"1\">" ?>Ocultar
+							</label>
+						
+						<?php else: ?>
+							<label>
+								<?php echo "<input type=\"checkbox\" name=\"permiso[{$value->id}][hidden]\" value=\"1\">" ?>Ocultar
+							</label>
+						<?php endif ?>
+					<?php else: ?>
+						<label>
+							<?php echo "<input type=\"checkbox\" name=\"permiso[{$value->id}][hidden]\" value=\"1\">" ?>Ocultar
+						</label>
+					<?php endif ?>
+				</td>
+				<td>
+					<?php if ($obj): ?>
+						<?php if ($obj->activo): ?>
+							<label>
+								<?php echo "<input type=\"checkbox\" name=\"permiso[{$value->id}][activo]\" checked value=\"1\">" ?>Permitir
+							</label>
+						
+						<?php else: ?>
+							<label>
+								<?php echo "<input type=\"checkbox\" name=\"permiso[{$value->id}][activo]\" value=\"1\">" ?>Permitir
+							</label>
+						<?php endif ?>
+					<?php else: ?>
+						<label>
+							<?php echo "<input type=\"checkbox\" name=\"permiso[{$value->id}][activo]\" value=\"1\">" ?>Permitir
+						</label>
+					<?php endif ?>
+				</td>
+			</tr>
+		<?php endforeach ?>
+	</table>
+		<?php echo Form::submit("Guardar","class='btn btn-default'") ?>
+		<?php echo Form::close() ?>
+		
+</fieldset>
+<style>
+	#fielset_permisos{
+
+		width:95%;
+		padding:5px;
+		margin:auto;
+	}
+	#fielset_permisos legend{
+		padding:4px;
+	}
+	#fielset_permisos input[type='submit'],#fielset_login input[type='reset']{
+		display: inline;
+	}
+	#table_lista_permisos{
+		width: 100%;
+	
+	}
+	#table_lista_permisos thead{
+		background-color: #AC6060;
+		color:white;
+	}
+	#table_lista_permisos th{
+		padding:3px;
+		border:1px solid black;
+	}
+	#table_lista_permisos td{
+		padding:3px;
+		border:1px solid black;
+		text-align: center;
+	}
+</style>

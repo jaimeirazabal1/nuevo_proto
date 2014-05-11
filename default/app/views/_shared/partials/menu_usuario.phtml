@@ -1,0 +1,15 @@
+<?php if (Auth::is_valid()): ?>
+	<div class="nav nav-tabs">
+		<div class="btn-group">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		    Mis Sitios <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		    <?php 
+		    $permiso = Load::model("usuario");
+		    echo $permiso->getMenuHtml(); 
+		    ?>
+		  </ul>
+		</div>
+	</div>
+<?php endif ?>

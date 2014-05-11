@@ -1,0 +1,26 @@
+<?php View::content() ?>
+<div class="container">
+	<div class="text-center">
+		<h2>Lista de Usuarios</h2>
+	</div>
+	<?php if (!empty($usuarios)): ?>
+		<table class='table'>
+			<thead class="bg-primary">
+				<th>ID</th>
+				<th>Nombre De Usuario</th>
+				<th>Permisos</th>
+				<th>Borrar</th>
+			</thead>
+			<?php foreach ($usuarios as $key => $value): ?>
+				<tr>
+					<td><?php echo $value->id ?></td>
+					<td><?php echo $value->nombre_usuario ?></td>
+					<td><?php echo Html::link("permiso/ver_permisos/".$value->id,"Ver") ?></td>
+					<td><?php echo Js::link("usuario/eliminar/".$value->id,"Eliminar") ?></td>
+				</tr>
+			<?php endforeach ?>
+		</table>
+	<?php else: ?>
+		<h2>Lista de Usuarios Vacia</h2>
+	<?php endif ?>
+</div>

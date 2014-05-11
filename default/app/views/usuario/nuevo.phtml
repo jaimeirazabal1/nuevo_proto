@@ -1,0 +1,28 @@
+<br>
+<?php View::content() ?>
+<fieldset class='well' style="margin:auto;width:400px">
+<div id="mensaje_login"></div>
+	<legend>
+		Nuevo Usuario
+	</legend>
+	<!-- $update, $action = NULL, $class = NULL, $method = 'post', $attrs = NULL-->
+	<?php echo Ajax::form('mensaje_login',"usuario/nuevo",null,"POST","role='form'") ?>
+	<div class="form-group">
+		<?php echo Form::label("Nombre De Usuario:","Nombre De Usuario:") ?>
+		<?php echo Form::text("usuario.nombre_usuario",'class="form-control" 
+		placeholder="Nombre de Usuario"') ?>
+	</div>
+	<div class="form-group">
+		<?php echo Form::label("Contraseña:","Contraseña:") ?>
+		<?php echo Form::pass("usuario.password",'class="form-control" placeholder="Contraseña"') ?>
+	</div>
+	<div class="check">
+		<label>
+			<?php echo Form::check("usuario.admin",1) ?>Administrador
+		</label>
+	</div>
+	<hr>
+	<?php echo Form::submit("Crear","class='btn'") ?>
+	<?php echo Form::reset("Borrar Campos","class='btn btn-danger'") ?>
+	<?php echo Form::close() ?>
+</fieldset>
